@@ -1,9 +1,6 @@
 package hammurabi;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -28,9 +25,10 @@ public class Game {
 
 
 
+
     private int bushelsFedToPeople = rand.nextInt((int)((20*population) *.55), 20*population);
     private int acresToBuy = rand.nextInt(0, storedBushels/landPrice + 500);
-    private int acresToSell = rand.nextInt(ownedAcres, ownedAcres + 20);
+    private int acresToSell = rand.nextInt(0, ownedAcres + 120);
 
 
 //
@@ -50,7 +48,7 @@ public class Game {
 
     public int askHowManyAcresToBuy(int landPrice, int storedBushels){
         int requestedAcres = acresToBuy;
-        while (requestedAcres > storedBushels/landPrice) {
+        while (requestedAcres > storedBushels/landPrice && (impossibleAnswers < 10)) {
             try {
                 System.out.println(getPhrase.setPhrase());
             } catch (IOException e) {
@@ -72,7 +70,7 @@ public class Game {
         if (boughtLand) {
            return 0;
         }
-        while (acresToSell > acresOwned && impossibleAnswers< 10) {
+        while (acresToSell > acresOwned && (impossibleAnswers < 10)) {
             try {
                 System.out.println(getPhrase.setPhrase());
             } catch (IOException e) {
@@ -83,9 +81,20 @@ public class Game {
         ownedAcres -= soldAcres;
         return soldAcres;
     }
-       public int askHowMuchGrainToFeedPeople(int bushels){
-return 0;
-        }
+       public int askHowMuchGrainToFeedPeople(int bushels) {
+           while (bushelsFedToPeople > storedBushels && (impossibleAnswers < 10)) {
+               try {
+                   System.out.println(getPhrase.setPhrase());
+               } catch (IOException e) {
+                   e.printStackTrace();
+               }
+               impossibleAnswers++;
+           }
+           storedBushels -= bushelsFedToPeople;
+
+           //noinspection DuplicatedCode
+           return bushelsFedToPeople;
+    }
 
     public int plagueDeaths ( int population){
         return 0;

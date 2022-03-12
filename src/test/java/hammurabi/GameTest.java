@@ -1,11 +1,7 @@
 package hammurabi;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
 
@@ -42,8 +38,19 @@ class GameTest {
     }
 
     @Test
-    void askHowMuchGrainToFeedPeople() {
+    void askHowMuchGrainToFeedPeopleRemovesGrain() {
+        // Given
+        Game sell = new Game();
+        int oldStorage = sell.getStoredBushels();
+        int distributedStorage = sell.askHowMuchGrainToFeedPeople(oldStorage);
+        // When
+        int actual = sell.getStoredBushels();
+        int expected = oldStorage - distributedStorage;
+        System.out.println("Old Bushel Reserve: " + oldStorage + "\nDistributed Bushels: " + distributedStorage + "\nNew Bushel Reserve " + actual);
+        // Then
+        Assert.assertEquals(actual,expected);
     }
+
 
     @Test
     void plagueDeaths() {
