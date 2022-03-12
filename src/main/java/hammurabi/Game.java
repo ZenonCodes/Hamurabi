@@ -23,13 +23,14 @@ public class Game {
     private int seedYield = 3;
     private int ravagedGrain = 200;
     private int reignDuration = 1;
-    boolean revolt, boughtLand = false;
+    boolean revolt = false;
+    boolean boughtLand = false;
 
 
 
     private int bushelsFedToPeople = rand.nextInt((int)((20*population) *.55), 20*population);
-    private int acresToBuy = rand.nextInt(0, storedBushels/landPrice);
-    private int acresToSell = rand.nextInt(0, ownedAcres);
+    private int acresToBuy = rand.nextInt(0, storedBushels/landPrice + 500);
+    private int acresToSell = rand.nextInt(ownedAcres, ownedAcres + 20);
 
 
 //
@@ -49,30 +50,38 @@ public class Game {
 
     public int askHowManyAcresToBuy(int landPrice, int storedBushels){
         int requestedAcres = acresToBuy;
-        if (requestedAcres > storedBushels/landPrice) {
+        while (requestedAcres > storedBushels/landPrice) {
             try {
-                getPhrase.setPhrase();
+                System.out.println(getPhrase.setPhrase());
             } catch (IOException e) {
                 e.printStackTrace();
             }
             impossibleAnswers++;
         }
-        if (requestedAcres == 0) {
-            boughtLand = false;
+        if (requestedAcres != 0) {
+            boughtLand = true;
             return 0;
         }
         ownedAcres += requestedAcres;
 
     return requestedAcres;
     }
-    public void askHowManyAcresToSell(int acresOwned){
+    public int askHowManyAcresToSell(int acresOwned){
+
+        int soldAcres = acresToSell;
         if (boughtLand) {
-           return;
+           return 0;
         }
-        if (acresToSell > acresOwned) {
-            System.out.println("XX");
+        while (acresToSell > acresOwned && impossibleAnswers< 10) {
+            try {
+                System.out.println(getPhrase.setPhrase());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             impossibleAnswers++;
         }
+        ownedAcres -= soldAcres;
+        return soldAcres;
     }
        public int askHowMuchGrainToFeedPeople(int bushels){
 return 0;

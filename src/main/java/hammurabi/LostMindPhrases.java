@@ -14,10 +14,14 @@ public class LostMindPhrases{
     int j = 0;
 
     public String setPhrase() throws IOException {
+        if(phrases.length == 4){
+            return phrases[pickPhrase.nextInt(0,4)] + endPhrase;
+        }
         try {
             Scanner phrasesGrab = new Scanner(phrasesFile);
             while (phrasesGrab.hasNextLine()){
                 for(String currPhrase: phrases){
+                    if (j == 4) break;
                     phrases[j++] = phrasesGrab.nextLine();
                 }
             }

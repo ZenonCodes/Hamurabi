@@ -20,14 +20,25 @@ class GameTest {
         int expected = addedAcreage + oldAcreage;
         System.out.println("Old Acreage: " + oldAcreage + "\nAdded Acreage: " + addedAcreage + "\nNew Acreage " + actual);
 
-//        buy.askHowManyAcresToBuy(buy.getLandPrice(), buy.getStoredBushels());
-        Assert.assertEquals(actual,expected);
         // Then
+        Assert.assertEquals(actual,expected);
+
 
     }
 
     @Test
     void askHowManyAcresToSellSubtractsCorrectAcres() {
+        // Given
+        Game sell = new Game();
+        int oldAcreage = sell.getOwnedAcres();
+        int soldAcreage = sell.askHowManyAcresToSell(oldAcreage);
+        // When
+        int actual = sell.getOwnedAcres();
+        int expected = oldAcreage - soldAcreage;
+        System.out.println("Old Acreage: " + oldAcreage + "\nSold Acreage: " + soldAcreage + "\nNew Acreage " + actual);
+        // Then
+        Assert.assertEquals(actual,expected);
+
     }
 
     @Test
