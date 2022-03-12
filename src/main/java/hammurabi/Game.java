@@ -49,12 +49,7 @@ public class Game {
     public int askHowManyAcresToBuy(int landPrice, int storedBushels){
         int requestedAcres = acresToBuy;
         while (requestedAcres > storedBushels/landPrice && (impossibleAnswers < 10)) {
-            try {
-                System.out.println(getPhrase.setPhrase());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            impossibleAnswers++;
+            tryCatchBody();
         }
         if (requestedAcres != 0) {
             boughtLand = true;
@@ -70,33 +65,25 @@ public class Game {
         if (boughtLand) {
            return 0;
         }
+        //noinspection DuplicatedCode
         while (acresToSell > acresOwned && (impossibleAnswers < 10)) {
-            try {
-                System.out.println(getPhrase.setPhrase());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            impossibleAnswers++;
+            tryCatchBody();
         }
         ownedAcres -= soldAcres;
         return soldAcres;
     }
        public int askHowMuchGrainToFeedPeople(int bushels) {
            while (bushelsFedToPeople > storedBushels && (impossibleAnswers < 10)) {
-               try {
-                   System.out.println(getPhrase.setPhrase());
-               } catch (IOException e) {
-                   e.printStackTrace();
-               }
-               impossibleAnswers++;
+               tryCatchBody();
            }
            storedBushels -= bushelsFedToPeople;
 
-           //noinspection DuplicatedCode
            return bushelsFedToPeople;
     }
 
-    public int plagueDeaths ( int population){
+    public int plagueDeaths (int population){
+
+
         return 0;
     }
     public int starvationDeaths ( int population, int bushelsFedToPeople){
@@ -255,5 +242,13 @@ public class Game {
 
     public void setAcresToSell(int acresToSell) {
         this.acresToSell = acresToSell;
+    }
+    public void tryCatchBody(){
+        try {
+            System.out.println(getPhrase.setPhrase());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        impossibleAnswers++;
     }
 }
