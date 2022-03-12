@@ -14,7 +14,8 @@ public class LostMindPhrases{
     int j = 0;
 
     public String setPhrase() throws IOException {
-        if(phrases.length == 4){
+        for(String phrase: phrases){
+            if (phrase == null) break;
             return phrases[pickPhrase.nextInt(0,4)] + endPhrase;
         }
         try {
