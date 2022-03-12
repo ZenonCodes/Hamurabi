@@ -3,16 +3,27 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Hammurabi {
-    int storedBushels = 2800;
-    int population = 100;
-    int ownedAcres = 1000;
-    int landPrice = 19;
-    int starvedPopulation = 0;
-    int bushelsFedToPeople;
-    int ravagedGrain = grainEatenByRats();
-
     Random rand = new Random();
     Scanner speech = new Scanner(System.in);
+    int storedBushels = 2800;
+    int population = 100;
+    int prevPopulation = 95;
+    int totalImmigrants = 0;
+    int newImmigrants = 0;
+    int ownedAcres = 1000;
+    int landPrice = 19;
+    int harvest = 3000;
+    int seedYield = 3;
+    int starvedPopulation = 0;
+    int bushelsFedToPeople = rand.nextInt((int)((20*population) *.55), 20*population);
+    int ravagedGrain = 200;
+    int reignDuration = 1;
+    String salutationIntro = "O great Hammurabi!";
+    String landReport = "The city owns " + ownedAcres + " acres of land";
+    String harvestReport =  "We harvested " + harvest + "bushels at " + seedYield + "/acre.\n";
+    String ravageReport = "Rats destroyed" + ravagedGrain + "bushels leaving 2800 bushels in storage.\n";
+    String populationReport = "The population is now " + population + ".";
+    String landPriceReport = "Land is currently worth " +  landPrice + " bushels/acre.";
 
     public static void main(String[] args) {
 //        new Hammurabi().playGame();
@@ -30,13 +41,13 @@ public class Hammurabi {
          * The city owns 1000 acres of land.
          * Land is currently worth 19 bushels per acre.
          * */
-        askHowManyAcresToBuy();
+
 
 
     }
 
     int askHowManyAcresToBuy(int landPrice, int storedBushels){
-
+return 0;
     }
     public int plagueDeaths(int population){
         return 0;
