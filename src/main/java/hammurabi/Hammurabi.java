@@ -23,8 +23,8 @@ public class Hammurabi {
     boolean uprising, boughtLand = false;
     private int acresSold, acresBought, bushelsFedToPeople,acresPlanted = 0;
 
-    private boolean castPlague = rand.nextInt(100) < 15;
-    private boolean deployRats = rand.nextInt(100) < 40;
+    private boolean castPlague = false;
+    private boolean deployRats = false;
 
     int getNumber(String message) {
         while (true) {
@@ -39,6 +39,10 @@ public class Hammurabi {
     }
 
 
+    public void setLandPrice(){
+        landPrice = rand.nextInt(23 - 17 + 1) + 17;
+
+    }
 
     public void askHowManyAcresToBuy(){
         int requestedAcres = getNumber("Honorable Hammurabi, how many acres of land would you like to buy?\n");
@@ -46,9 +50,9 @@ public class Hammurabi {
             tryCatchBody();
             requestedAcres = getNumber("Honorable Hammurabi, how many acres of land would you like to buy?\n");
         }
-        if (requestedAcres != 0) {
-            boughtLand = true;
-        }
+
+            boughtLand = (requestedAcres > 0);
+
         acresBought = requestedAcres;
         ownedAcres += requestedAcres;
     }
@@ -91,6 +95,7 @@ public class Hammurabi {
 
     public void plagueDeaths (){
         prevPopulation = population;
+        castPlague = rand.nextInt(100) < 15;
         if(castPlague){
             plagueDeaths = (int) (this.population * .5);
         }
@@ -104,9 +109,9 @@ public class Hammurabi {
     }
 
     public void triggerUprising(){
-        if (starvedPopulation > .45 * prevPopulation) {
-            uprising = true;
-        }
+        uprising = (starvedPopulation > .45 * prevPopulation);
+
+
 
     }
 
@@ -114,7 +119,7 @@ public class Hammurabi {
         if (starvedPopulation > 0){
             newImmigrants = 0;
         } else {
-            newImmigrants = (20 * ownedAcres + storedBushels) / (100 * population) + 1;
+            newImmigrants = (20 * (ownedAcres + storedBushels)) / (100 * population) + 1;
             population += newImmigrants;
             totalImmigrants += newImmigrants;
         }
@@ -126,13 +131,14 @@ public class Hammurabi {
         storedBushels += harvestedCrops;
     }
     public void grainEatenByRats(){
+        deployRats = rand.nextInt(100) < 40;
         if(deployRats) {
             ravagedGrain = rand.nextInt((int) (.10 * storedBushels), (int) (.30 * storedBushels));
             this.storedBushels -= ravagedGrain;
         }
     }
     public void endDay(){
-        castPlague = boughtLand = false;
+        setLandPrice();
         acresSold = acresBought = ravagedGrain = newImmigrants = bushelsFedToPeople = 0;
     }
 
@@ -299,6 +305,7 @@ public class Hammurabi {
     public void setDeployRats(boolean deployRats) {
         this.deployRats = deployRats;
     }
+
 
     public void tryCatchBody(){
         try {
