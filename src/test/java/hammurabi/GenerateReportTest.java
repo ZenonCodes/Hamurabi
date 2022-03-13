@@ -10,9 +10,10 @@ class GenerateReportTest {
     void getReport() {
         // Given
         GenerateReport testReport = new GenerateReport();
+        Hammurabi testGame = new Hammurabi();
 
         // When
-        String printReport = testReport.getReport();
+        String printReport = testReport.getReport(testGame);
 
         // Then
         System.out.println(printReport);

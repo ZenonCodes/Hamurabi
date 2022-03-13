@@ -1,10 +1,12 @@
-package hammurabi;
+package hammurabi.test;
+
+import hammurabi.LostMindPhrases;
 
 import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Game {
+public class GameTestVersion {
     Random rand = new Random();
     Scanner speech = new Scanner(System.in);
     LostMindPhrases getPhrase = new LostMindPhrases();

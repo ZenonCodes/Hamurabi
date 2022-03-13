@@ -1,16 +1,15 @@
 package hammurabi;
 
+import hammurabi.test.GameTestVersion;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-
-import java.util.Random;
 
 class GameTest {
 
     @Test
     void askHowManyAcresToBuyAddsCorrectAcres() {
         // Given
-        Game buy = new Game();
+        GameTestVersion buy = new GameTestVersion();
         int oldAcreage = buy.getOwnedAcres();
         int addedAcreage = buy.askHowManyAcresToBuy(buy.getLandPrice(), buy.getStoredBushels());
         // When
@@ -27,7 +26,7 @@ class GameTest {
     @Test
     void askHowManyAcresToSellSubtractsCorrectAcres() {
         // Given
-        Game sell = new Game();
+        GameTestVersion sell = new GameTestVersion();
         int oldAcreage = sell.getOwnedAcres();
         int soldAcreage = sell.askHowManyAcresToSell(oldAcreage);
         // When
@@ -42,7 +41,7 @@ class GameTest {
     @Test
     void askHowMuchGrainToFeedPeopleRemovesGrain() {
         // Given
-        Game feed = new Game();
+        GameTestVersion feed = new GameTestVersion();
         int oldStorage = feed.getStoredBushels();
         int distributedStorage = feed.askHowMuchGrainToFeedPeople(oldStorage);
         // When
@@ -57,7 +56,7 @@ class GameTest {
     @Test
     void plagueDeaths() {
         // Given
-        Game plague = new Game();
+        GameTestVersion plague = new GameTestVersion();
         int prePlaguePopulation = plague.getPopulation();
         int chancePlague = plague.plagueDeaths(prePlaguePopulation);
         // When
@@ -71,7 +70,7 @@ class GameTest {
     @Test
     void starvationDeaths() {
         // Given
-        Game starvedOrFed = new Game();
+        GameTestVersion starvedOrFed = new GameTestVersion();
         int yesterdaysPopulation = starvedOrFed.getPopulation();
         int starvedPeople = starvedOrFed.starvationDeaths (starvedOrFed.getPopulation(), starvedOrFed.getBushelsFedToPeople());
         // When
@@ -87,7 +86,7 @@ class GameTest {
     @Test
     void uprising() {
         // Given
-        Game uprising = new Game();
+        GameTestVersion uprising = new GameTestVersion();
         int yesterdaysPopulation = uprising.getPopulation();
         int starvedPeople;
 
@@ -105,7 +104,7 @@ class GameTest {
     void newImmigrantsMathCorrect() {
 
         // Given
-        Game immigrants = new Game();
+        GameTestVersion immigrants = new GameTestVersion();
         immigrants.immigrants(immigrants.getPopulation(), immigrants.getOwnedAcres(), immigrants.getStoredBushels());
         // When
         int actual = immigrants.getNewImmigrants();
@@ -119,7 +118,7 @@ class GameTest {
     void newImmigrantsZeroForStarvingKingdoms() {
 
         // Given
-        Game immigrants = new Game();
+        GameTestVersion immigrants = new GameTestVersion();
         immigrants.setStarvedPopulation(100);
         immigrants.immigrants(immigrants.getPopulation(), immigrants.getOwnedAcres(), immigrants.getStoredBushels());
         // When
@@ -134,7 +133,7 @@ class GameTest {
     @Test
     void askHowManyAcresToPlant (){
         //Given
-        Game plant = new Game();
+        GameTestVersion plant = new GameTestVersion();
         int plantedAcres = plant.getAcresToPlant();
         plant.setPopulation(10*plantedAcres);
         plant.setStoredBushels(2*plantedAcres);
@@ -151,7 +150,7 @@ class GameTest {
     @Test
     void harvestIsLinkedToSeedYield() {
         // Given
-        Game harvest = new Game();
+        GameTestVersion harvest = new GameTestVersion();
         int harvestYield = harvest.harvest(harvest.getOwnedAcres());
         // When
         int actual = harvestYield;
@@ -164,7 +163,7 @@ class GameTest {
     @Test
     void harvestGetsAddedToStoredBushels() {
         // Given
-        Game harvest = new Game();
+        GameTestVersion harvest = new GameTestVersion();
         int oldStoredBushels = harvest.getStoredBushels();
         int harvestYield = harvest.harvest(harvest.getOwnedAcres());
         int newStoredBushels = harvestYield + oldStoredBushels;
@@ -182,7 +181,7 @@ class GameTest {
     @Test
     void grainEatenByRats() {
         // Given
-        Game rats = new Game();
+        GameTestVersion rats = new GameTestVersion();
         int oldBushels = rats.getStoredBushels();
         // When
         rats.setDeployRats(true);
