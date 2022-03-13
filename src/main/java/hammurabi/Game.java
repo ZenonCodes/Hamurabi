@@ -90,8 +90,15 @@ public class Game {
         }
         return plagueDeaths;
     }
-    public int starvationDeaths ( int population, int bushelsFedToPeople){
-        return 0;
+    public int starvationDeaths (int population, int bushelsFedToPeople){
+        int starvationDeaths = (population * 20) % bushelsFedToPeople;
+        int fedPopulation = bushelsFedToPeople/20;
+        // if you have a population of 10 people you need 200 bushels
+        // if bushels fed to people < 20 * population -> 20 * 10 = 200 % bushelsFed(60) / 20 60 - 3 people
+        // population = bushelsFed/ 20
+        starvedPopulation = population - fedPopulation;
+        this.population -= starvedPopulation;
+        return starvedPopulation;
     }
     public boolean uprising ( int population, int starvedPopulation){
         return false;

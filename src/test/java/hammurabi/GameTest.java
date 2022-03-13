@@ -69,6 +69,17 @@ class GameTest {
 
     @Test
     void starvationDeaths() {
+        // Given
+        Game starvedOrFed = new Game();
+        int yesterdaysPopulation = starvedOrFed.getPopulation();
+        int starvedPeople = starvedOrFed.starvationDeaths (starvedOrFed.getPopulation(), starvedOrFed.getBushelsFedToPeople());
+        // When
+        int actual = yesterdaysPopulation - starvedOrFed.getStarvedPopulation();
+        int expected = yesterdaysPopulation - starvedPeople;
+        System.out.println("Yesterday's population: " + yesterdaysPopulation + "\nStarved citizens " + starvedPeople + "\nNew population " + actual);
+        // Then
+        System.out.println(actual + " " + expected);
+        Assert.assertEquals(actual,expected);
     }
 
     @Test
