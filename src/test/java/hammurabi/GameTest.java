@@ -146,21 +146,31 @@ class GameTest {
 
 
     @Test
-    void harvestGetsAddedToStoredBushels() {
-        // Choose a random integer between 1 and 6, inclusive.
-        // Each acre that was planted with seed will yield this many bushels of grain.
-        // (Example: if you planted 50 acres, and your number is 3,
-        // you harvest 150 bushels of grain). Return the number of bushels harvested.
+    void harvestIsLinkedToSeedYield() {
         // Given
         Game harvest = new Game();
         int harvestYield = harvest.harvest(harvest.getOwnedAcres());
-        int oldStoredBushels = harvest.getStoredBushels();
         // When
         int actual = harvestYield;
-        int expected = harvest.getStoredBushels() - oldStoredBushels;
+        int expected = harvest.getAcresToPlant() * harvest.getSeedYield();
         System.out.println("Expected Harvest: " + expected  + "\nActual Harvest: " + actual);
         // Then
-        System.out.println(actual + " " + expected);
+        Assert.assertEquals(actual,expected);
+    }
+
+    @Test
+    void harvestGetsAddedToStoredBushels() {
+        // Given
+        Game harvest = new Game();
+        int oldStoredBushels = harvest.getStoredBushels();
+        int harvestYield = harvest.harvest(harvest.getOwnedAcres());
+        int newStoredBushels = harvestYield + oldStoredBushels;
+
+        // When
+        int actual = harvestYield;
+        int expected = newStoredBushels - oldStoredBushels;
+        System.out.println("Expected crops to be added: " + expected  + "\nActual crops added: " + actual);
+        // Then
         Assert.assertEquals(actual,expected);
     }
 

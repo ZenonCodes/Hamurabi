@@ -137,8 +137,10 @@ public class Game {
         return newImmigrants;
     }
 
-    public int harvest(int acres){
+    public int harvest(int ownedAcres){
         seedYield = rand.nextInt(1,7);
+        harvestedCrops = seedYield * acresToPlant;
+        storedBushels += harvestedCrops;
         return harvestedCrops;
     }
     public int grainEatenByRats(int storedBushels){
