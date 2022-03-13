@@ -32,7 +32,7 @@ public class PlayHammurabi {
                  newGame.endDay();
 
              }
-             System.out.printf(dailyReport.getReport(newGame) + '\n' + "Thus, concludes your reign!");
+             System.out.printf( '\n' + "Thus, concludes your reign!");
          }
 }
 

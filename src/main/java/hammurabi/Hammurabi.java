@@ -103,15 +103,13 @@ public class Hammurabi {
     }
 
     public void starvationDeaths (){
-        int fedPopulation = bushelsFedToPeople/20;
-        starvedPopulation = population - fedPopulation;
-        population = fedPopulation;
+        population = bushelsFedToPeople/20;
+        starvedPopulation = -1 * (population - prevPopulation);
+        System.out.println(starvedPopulation);
     }
 
     public void triggerUprising(){
         uprising = (starvedPopulation > .45 * prevPopulation);
-
-
 
     }
 
