@@ -23,13 +23,18 @@ public class Game {
     boolean uprising, plague, boughtLand = false;
 
 
+    public int getAcresToPlant() {
+        return acresToPlant;
+    }
 
-
-
+    public void setAcresToPlant(int acresToPlant) {
+        this.acresToPlant = acresToPlant;
+    }
 
     private int bushelsFedToPeople = rand.nextInt((int)((20*population) *.10), 20*population);
     private int acresToBuy = rand.nextInt(0, storedBushels/landPrice + 500);
     private int acresToSell = rand.nextInt(0, ownedAcres + 120);
+    private int acresToPlant = rand.nextInt(0, ownedAcres);
     private boolean castPlague = rand.nextInt(100) < 15;
 
 
@@ -83,6 +88,24 @@ public class Game {
            return bushelsFedToPeople;
     }
 
+    public int askHowManyAcresToPlant(int ownedAcres, int population, int storedBushels) {
+       int acresToPlant = this.acresToPlant;
+        //Ask the player how many acres to plant with grain, and returns that number.
+        // You must have enough acres, enough grain, and enough people to do the planting.
+        // Any grain left over goes into storage for next year.
+        while (acresToPlant > ownedAcres
+                || acresToPlant > (population * 10)
+                || acresToPlant > storedBushels/2
+                && (impossibleAnswers < 10))
+        {
+            tryCatchBody();
+            //reprompt
+        }
+
+
+        return acresToPlant;
+    }
+
     public int plagueDeaths (int population){
         prevPopulation = population;
         if(castPlague){
@@ -91,11 +114,8 @@ public class Game {
         return plagueDeaths;
     }
     public int starvationDeaths (int population, int bushelsFedToPeople){
-        int starvationDeaths = (population * 20) % bushelsFedToPeople;
+//        int starvationDeaths = (population * 20) % bushelsFedToPeople;
         int fedPopulation = bushelsFedToPeople/20;
-        // if you have a population of 10 people you need 200 bushels
-        // if bushels fed to people < 20 * population -> 20 * 10 = 200 % bushelsFed(60) / 20 60 - 3 people
-        // population = bushelsFed/ 20
         starvedPopulation = population - fedPopulation;
         this.population -= starvedPopulation;
         return starvedPopulation;
@@ -117,8 +137,9 @@ public class Game {
         return newImmigrants;
     }
 
-    public int harvest( int acres){
-        return 0;
+    public int harvest(int acres){
+        seedYield = rand.nextInt(1,7);
+        return harvestedCrops;
     }
     public int grainEatenByRats(int storedBushels){
         int bushels = storedBushels;

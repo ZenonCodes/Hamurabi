@@ -127,23 +127,45 @@ class GameTest {
         Assert.assertEquals(actual,expected);
     }
 
-//
-//    @Test
-//    void harvest() {
-//        // Given
-//        Game starvedOrFed = new Game();
-//        int
-//        int ;
-//        // When
-//        int actual =
-//        int expected = ;
-//        System.out.println("'s population: " +  + "\nStarved citizens "
-//                +  + "\nNew population " + actual);
-//        // Then
-//        System.out.println(actual + " " + expected);
-//        Assert.assertEquals(actual,expected);
-//    }
-//
+    @Test
+    void askHowManyAcresToPlant (){
+        //Given
+        Game plant = new Game();
+        int plantedAcres = plant.getAcresToPlant();
+        plant.setPopulation(10*plantedAcres);
+        plant.setStoredBushels(2*plantedAcres);
+        // When
+        int actual = plant.askHowManyAcresToPlant(plant.getOwnedAcres(), plant.getPopulation(),plant.getStoredBushels());
+        int expected = plant.getAcresToPlant();
+        System.out.println("Expected Acres: " + expected  + "\nActual Acres: " + actual);
+        // Then
+        System.out.println(actual + " " + expected);
+        Assert.assertEquals(actual,expected);
+
+    }
+
+
+    @Test
+    void harvestGetsAddedToStoredBushels() {
+        // Choose a random integer between 1 and 6, inclusive.
+        // Each acre that was planted with seed will yield this many bushels of grain.
+        // (Example: if you planted 50 acres, and your number is 3,
+        // you harvest 150 bushels of grain). Return the number of bushels harvested.
+        // Given
+        Game harvest = new Game();
+        int harvestYield = harvest.harvest(harvest.getOwnedAcres());
+        int oldStoredBushels = harvest.getStoredBushels();
+        // When
+        int actual = harvestYield;
+        int expected = harvest.getStoredBushels() - oldStoredBushels;
+        System.out.println("Expected Harvest: " + expected  + "\nActual Harvest: " + actual);
+        // Then
+        System.out.println(actual + " " + expected);
+        Assert.assertEquals(actual,expected);
+    }
+
+
+
 //    @Test
 //    void grainEatenByRats() {
 //        // Given
