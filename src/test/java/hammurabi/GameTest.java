@@ -3,6 +3,8 @@ package hammurabi;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 class GameTest {
 
     @Test
@@ -170,27 +172,28 @@ class GameTest {
         // When
         int actual = harvestYield;
         int expected = newStoredBushels - oldStoredBushels;
-        System.out.println("Expected crops to be added: " + expected  + "\nActual crops added: " + actual + "\n\n\tENDTEST\n");
+        System.out.println("\nFormer Bushel Amount: " + oldStoredBushels + "\nExpected crops to be added: " + expected  + "\nActual crops added: " + actual + "\n\n\tENDTEST\n");
         // Then
         Assert.assertEquals(actual,expected);
     }
 
 
 
-//    @Test
-//    void grainEatenByRats() {
-//        // Given
-//        Game starvedOrFed = new Game();
-//        int
-//        int ;
-//        // When
-//        int actual =
-//        int expected = ;
-//        System.out.println("'s population: " +  + "\nStarved citizens "
-//                +  + "\nNew population " + actual);
-//        // Then
-//        System.out.println(actual + " " + expected);
-//        Assert.assertEquals(actual,expected);
-//    }
+    @Test
+    void grainEatenByRats() {
+        // Given
+        Game rats = new Game();
+        int oldBushels = rats.getStoredBushels();
+        // When
+        rats.setDeployRats(true);
+        int ravagedGrain = rats.grainEatenByRats(oldBushels);
+        int postRavagedBushels = rats.getStoredBushels();
+        int actual = oldBushels - ravagedGrain;
+        int expected = postRavagedBushels;
+        System.out.println("Pre-Ravaged Bushels: " + oldBushels  + "\nRavaged Bushels: " + ravagedGrain
+                + "\nPost-Ravaged Bushels: " + actual + "\n\n\tENDTEST\n");
+        // Then
+        Assert.assertEquals(actual,expected);
+    }
 
 }

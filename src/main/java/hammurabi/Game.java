@@ -8,7 +8,6 @@ public class Game {
     Random rand = new Random();
     Scanner speech = new Scanner(System.in);
     LostMindPhrases getPhrase = new LostMindPhrases();
-//  GenerateReport report = new GenerateReport();
 
     private int storedBushels = 2800;
     private int population = 100;
@@ -31,12 +30,20 @@ public class Game {
         this.acresToPlant = acresToPlant;
     }
 
-    private int bushelsFedToPeople = rand.nextInt((int)((20*population) *.10), 20*population);
-    private int acresToBuy = rand.nextInt(0, storedBushels/landPrice + 500);
-    private int acresToSell = rand.nextInt(0, ownedAcres + 120);
-    private int acresToPlant = rand.nextInt(0, ownedAcres);
+    private int bushelsFedToPeople = rand.nextInt((int)((20*population) *.10), 20*population); //test input
+    private int acresToBuy = rand.nextInt(0, storedBushels/landPrice + 500); //test input
+    private int acresToSell = rand.nextInt(0, ownedAcres + 120); //test input
+    private int acresToPlant = rand.nextInt(0, ownedAcres); //test input
     private boolean castPlague = rand.nextInt(100) < 15;
+    private boolean deployRats = rand.nextInt(100) < 40;
 
+    public boolean isDeployRats() {
+        return deployRats;
+    }
+
+    public void setDeployRats(boolean deployRats) {
+        this.deployRats = deployRats;
+    }
 
 //
 //    int getNumber(String message) {
@@ -90,9 +97,6 @@ public class Game {
 
     public int askHowManyAcresToPlant(int ownedAcres, int population, int storedBushels) {
        int acresToPlant = this.acresToPlant;
-        //Ask the player how many acres to plant with grain, and returns that number.
-        // You must have enough acres, enough grain, and enough people to do the planting.
-        // Any grain left over goes into storage for next year.
         while (acresToPlant > ownedAcres
                 || acresToPlant > (population * 10)
                 || acresToPlant > storedBushels/2
@@ -144,7 +148,11 @@ public class Game {
         return harvestedCrops;
     }
     public int grainEatenByRats(int storedBushels){
-        int bushels = storedBushels;
+        if(deployRats) {
+            ravagedGrain = rand.nextInt((int) (.10 * storedBushels), (int) (.30 * storedBushels));
+            this.storedBushels -= ravagedGrain;
+            return ravagedGrain;
+        }
         return 0;
     }
     public void endDay(){
