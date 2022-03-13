@@ -20,14 +20,14 @@ public class Game {
     private int seedYield = 3;
     private int ravagedGrain = 200;
     private int reignDuration = 1;
-    boolean revolt, plague, boughtLand = false;
+    boolean uprising, plague, boughtLand = false;
 
 
 
 
 
 
-    private int bushelsFedToPeople = rand.nextInt((int)((20*population) *.55), 20*population);
+    private int bushelsFedToPeople = rand.nextInt((int)((20*population) *.10), 20*population);
     private int acresToBuy = rand.nextInt(0, storedBushels/landPrice + 500);
     private int acresToSell = rand.nextInt(0, ownedAcres + 120);
     private boolean castPlague = rand.nextInt(100) < 15;
@@ -84,7 +84,7 @@ public class Game {
     }
 
     public int plagueDeaths (int population){
-        int prePlaguePopulation = population;
+        prevPopulation = population;
         if(castPlague){
             plagueDeaths = (int) (this.population * .5);
         }
@@ -100,7 +100,11 @@ public class Game {
         this.population -= starvedPopulation;
         return starvedPopulation;
     }
-    public boolean uprising ( int population, int starvedPopulation){
+    public boolean triggerUprising(int population, int starvedPopulation){
+        if (starvedPopulation > .55 * prevPopulation) {
+            uprising = true;
+            return true;
+        }
         return false;
     }
 
@@ -224,11 +228,11 @@ public class Game {
     public void setReignDuration(int reignDuration) {
         this.reignDuration = reignDuration;
     }
-    public void setUprising(boolean revolt) {
-        this.revolt = revolt;
+    public void setUprising(boolean uprising) {
+        this.uprising = uprising;
     }
     public boolean getUprising() {
-        return revolt;
+        return uprising;
     }
 
     public int getImpossibleAnswers() {

@@ -55,8 +55,8 @@ public class HammurabiTest {
 
     @Test
     public final void testUprising() {
-        assertTrue("Should have had an uprising!", ham.uprising(1000, 451));
-        assertFalse("Should not have had an uprising!", ham.uprising(1000, 449));
+        assertTrue("Should have had an triggerUprising!", ham.uprising(1000, 451));
+        assertFalse("Should not have had an triggerUprising!", ham.uprising(1000, 449));
     }
 
     @Test

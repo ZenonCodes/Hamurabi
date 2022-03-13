@@ -23,7 +23,7 @@ import java.util.Scanner;
 //                 askHowManyAcresToSell(getAcresToSell());
 //                 plagueDeaths(getPopulation());
 //                 starvationDeaths(getPopulation(), getBushelsFedToPeople());
-//                 uprising(getPopulation(), getBushelsFedToPeople());
+//                 triggerUprising(getPopulation(), getBushelsFedToPeople());
 //                 immigrants(getPopulation(), getOwnedAcres(), getStoredBushels());
 //                 harvest(getOwnedAcres());
 //                 grainEatenByRats(getStoredBushels());

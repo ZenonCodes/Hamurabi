@@ -8,6 +8,7 @@ public class GenerateReport extends Game  {
     String populationReport = "You now reign over " + getPopulation() + " citizens.\n";
     String landPriceReport = "Land is currently worth " +  getLandPrice() + " bushels/acre.\n";
     String plagueReport = "";
+    String uprisingReport = "I report to you no longer! Guards, escort him to the lion's den!";
     String report = salutationIntro + landReport + harvestReport +
             ravageReport + populationReport + landPriceReport + plagueReport;
 
@@ -35,6 +36,9 @@ public class GenerateReport extends Game  {
             if(plague){
                 plagueReport = "A plague unlike any before or after has swept through your kingdom. \n " +
                         "All around Sumer, weeping is heard.";
+            }
+            if(uprising){
+                return uprisingReport;
             }
 
             return report;
