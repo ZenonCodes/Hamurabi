@@ -105,7 +105,7 @@ public class Hammurabi {
     public void starvationDeaths (){
         int fedPopulation = bushelsFedToPeople/20;
         starvedPopulation = population - fedPopulation;
-        population -= starvedPopulation;
+        population = fedPopulation;
     }
 
     public void triggerUprising(){
