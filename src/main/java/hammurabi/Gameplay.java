@@ -27,6 +27,7 @@ import java.util.Scanner;
 //                 immigrants(getPopulation(), getOwnedAcres(), getStoredBushels());
 //                 harvest(getOwnedAcres());
 //                 grainEatenByRats(getStoredBushels());
+//                 reignDuration++;
 //                 endDay();
 //             }
 //             System.out.printf(report.getReport() + '\n' + "Thus, concludes your reign!");

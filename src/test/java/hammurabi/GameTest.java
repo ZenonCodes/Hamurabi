@@ -97,21 +97,36 @@ class GameTest {
         Assert.assertEquals(actual,expected);
     }
 
-//    @Test
-//    void immigrants() {
-//        // Given
-//        Game starvedOrFed = new Game();
-//        int
-//        int ;
-//        // When
-//        int actual =
-//        int expected = ;
-//        System.out.println("'s population: " +  + "\nStarved citizens "
-//                +  + "\nNew population " + actual);
-//        // Then
-//        System.out.println(actual + " " + expected);
-//        Assert.assertEquals(actual,expected);
-//    }
+    @Test
+    void newImmigrantsMathCorrect() {
+
+        // Given
+        Game immigrants = new Game();
+        immigrants.immigrants(immigrants.getPopulation(), immigrants.getOwnedAcres(), immigrants.getStoredBushels());
+        // When
+        int actual = immigrants.getNewImmigrants();
+        int expected = (20 * immigrants.getOwnedAcres() + immigrants.getStoredBushels()) / (100*immigrants.getPopulation()) + 1;
+        System.out.println("New Immigrants: " + actual + "\nExpected Immigrants: " + expected);
+        // Then
+        Assert.assertEquals(actual,expected);
+    }
+
+    @Test
+    void newImmigrantsZeroForStarvingKingdoms() {
+
+        // Given
+        Game immigrants = new Game();
+        immigrants.setStarvedPopulation(100);
+        immigrants.immigrants(immigrants.getPopulation(), immigrants.getOwnedAcres(), immigrants.getStoredBushels());
+        // When
+        int actual = immigrants.getNewImmigrants();
+        int expected = 0;
+        System.out.println("New Immigrants: " + actual + "\nExpected Immigrants: " + expected
+                + "\nStarving Citizens " + immigrants.getStarvedPopulation());
+        // Then
+        Assert.assertEquals(actual,expected);
+    }
+
 //
 //    @Test
 //    void harvest() {

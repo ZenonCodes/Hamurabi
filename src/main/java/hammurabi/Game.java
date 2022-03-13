@@ -109,8 +109,14 @@ public class Game {
     }
 
     public int immigrants( int population, int ownedAcres, int storedBushels){
-        return 0;
+        if (starvedPopulation > 0){
+            newImmigrants = 0;
+            return newImmigrants;
+        }
+        newImmigrants = (20 * this.ownedAcres + this.storedBushels)/ (100 * population) + 1;
+        return newImmigrants;
     }
+
     public int harvest( int acres){
         return 0;
     }
@@ -119,9 +125,10 @@ public class Game {
         return 0;
     }
     public void endDay(){
-        boughtLand = false;
-        bushelsFedToPeople = acresToSell = acresToBuy = impossibleAnswers = 0;
-        reignDuration++;
+        castPlague = boughtLand = false;
+        totalImmigrants += newImmigrants;
+        population += newImmigrants;
+        newImmigrants = bushelsFedToPeople = acresToSell = acresToBuy = impossibleAnswers = 0;
     }
 
 
