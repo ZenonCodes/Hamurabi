@@ -14,7 +14,7 @@ class GameTest {
         // When
         int actual = buy.getOwnedAcres();
         int expected = addedAcreage + oldAcreage;
-        System.out.println("Old Acreage: " + oldAcreage + "\nAdded Acreage: " + addedAcreage + "\nNew Acreage " + actual);
+        System.out.println("Old Acreage: " + oldAcreage + "\nAdded Acreage: " + addedAcreage + "\nNew Acreage " + actual + "\n\n\tENDTEST\n");
 
         // Then
         Assert.assertEquals(actual,expected);
@@ -31,7 +31,7 @@ class GameTest {
         // When
         int actual = sell.getOwnedAcres();
         int expected = oldAcreage - soldAcreage;
-        System.out.println("Old Acreage: " + oldAcreage + "\nSold Acreage: " + soldAcreage + "\nNew Acreage " + actual);
+        System.out.println("Old Acreage: " + oldAcreage + "\nSold Acreage: " + soldAcreage + "\nNew Acreage " + actual + "\n\n\tENDTEST\n");
         // Then
         Assert.assertEquals(actual,expected);
 
@@ -46,7 +46,7 @@ class GameTest {
         // When
         int actual = feed.getStoredBushels();
         int expected = oldStorage - distributedStorage;
-        System.out.println("Old Bushel Reserve: " + oldStorage + "\nDistributed Bushels: " + distributedStorage + "\nNew Bushel Reserve " + actual);
+        System.out.println("Old Bushel Reserve: " + oldStorage + "\nDistributed Bushels: " + distributedStorage + "\nNew Bushel Reserve " + actual + "\n\n\tENDTEST\n");
         // Then
         Assert.assertEquals(actual,expected);
     }
@@ -61,7 +61,7 @@ class GameTest {
         // When
         int actual = prePlaguePopulation - plague.getPlagueDeaths();
         int expected = prePlaguePopulation - chancePlague;
-        System.out.println("Pre-plague population: " + prePlaguePopulation + "\nDeceased citizens " + chancePlague + "\nNew population " + actual);
+        System.out.println("Pre-plague population: " + prePlaguePopulation + "\nDeceased citizens " + chancePlague + "\nNew population " + actual + "\n\n\tENDTEST\n");
         // Then
         Assert.assertEquals(actual,expected);
     }
@@ -75,7 +75,9 @@ class GameTest {
         // When
         int actual = yesterdaysPopulation - starvedOrFed.getStarvedPopulation();
         int expected = yesterdaysPopulation - starvedPeople;
-        System.out.println("Yesterday's population: " + yesterdaysPopulation + "\nStarved citizens " + starvedPeople + "\nNew population " + actual);
+        System.out.println("Yesterday's population: " + yesterdaysPopulation + "\nStarved citizens " + starvedPeople
+                + "\nNew population " + actual
+                + "\n\n\tENDTEST\n");
         // Then
         Assert.assertEquals(actual,expected);
     }
@@ -92,7 +94,7 @@ class GameTest {
         boolean actual = uprising.triggerUprising(uprising.getPopulation(), uprising.getStarvedPopulation());
         boolean expected = uprising.getUprising();
         System.out.println("Starved population uprising threshold : " + Math.round(uprising.getPrevPopulation() * .54) + "\nStarved citizens "
-                + uprising.getStarvedPopulation() + "\nUprising threshold met? " + actual);
+                + uprising.getStarvedPopulation() + "\nUprising threshold met? " + actual + "\n\n\tENDTEST\n");
         // Then
         Assert.assertEquals(actual,expected);
     }
@@ -106,7 +108,7 @@ class GameTest {
         // When
         int actual = immigrants.getNewImmigrants();
         int expected = (20 * immigrants.getOwnedAcres() + immigrants.getStoredBushels()) / (100*immigrants.getPopulation()) + 1;
-        System.out.println("New Immigrants: " + actual + "\nExpected Immigrants: " + expected);
+        System.out.println("New Immigrants: " + actual + "\nExpected Immigrants: " + expected + "\n\n\tENDTEST\n");
         // Then
         Assert.assertEquals(actual,expected);
     }
@@ -122,7 +124,7 @@ class GameTest {
         int actual = immigrants.getNewImmigrants();
         int expected = 0;
         System.out.println("New Immigrants: " + actual + "\nExpected Immigrants: " + expected
-                + "\nStarving Citizens " + immigrants.getStarvedPopulation());
+                + "\nStarving Citizens " + immigrants.getStarvedPopulation() + "\n\n\tENDTEST\n");
         // Then
         Assert.assertEquals(actual,expected);
     }
@@ -137,9 +139,8 @@ class GameTest {
         // When
         int actual = plant.askHowManyAcresToPlant(plant.getOwnedAcres(), plant.getPopulation(),plant.getStoredBushels());
         int expected = plant.getAcresToPlant();
-        System.out.println("Expected Acres: " + expected  + "\nActual Acres: " + actual);
+        System.out.println("Expected Acres: " + expected  + "\nActual Acres: " + actual + "\n\n\tENDTEST\n");
         // Then
-        System.out.println(actual + " " + expected);
         Assert.assertEquals(actual,expected);
 
     }
@@ -153,7 +154,7 @@ class GameTest {
         // When
         int actual = harvestYield;
         int expected = harvest.getAcresToPlant() * harvest.getSeedYield();
-        System.out.println("Expected Harvest: " + expected  + "\nActual Harvest: " + actual);
+        System.out.println("Expected Harvest: " + expected  + "\nActual Harvest: " + actual + "\n\n\tENDTEST\n");
         // Then
         Assert.assertEquals(actual,expected);
     }
@@ -169,7 +170,7 @@ class GameTest {
         // When
         int actual = harvestYield;
         int expected = newStoredBushels - oldStoredBushels;
-        System.out.println("Expected crops to be added: " + expected  + "\nActual crops added: " + actual);
+        System.out.println("Expected crops to be added: " + expected  + "\nActual crops added: " + actual + "\n\n\tENDTEST\n");
         // Then
         Assert.assertEquals(actual,expected);
     }
@@ -178,22 +179,6 @@ class GameTest {
 
 //    @Test
 //    void grainEatenByRats() {
-//        // Given
-//        Game starvedOrFed = new Game();
-//        int
-//        int ;
-//        // When
-//        int actual =
-//        int expected = ;
-//        System.out.println("'s population: " +  + "\nStarved citizens "
-//                +  + "\nNew population " + actual);
-//        // Then
-//        System.out.println(actual + " " + expected);
-//        Assert.assertEquals(actual,expected);
-//    }
-//
-//    @Test
-//    void endDay() {
 //        // Given
 //        Game starvedOrFed = new Game();
 //        int
