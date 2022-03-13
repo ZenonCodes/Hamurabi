@@ -40,11 +40,11 @@ class GameTest {
     @Test
     void askHowMuchGrainToFeedPeopleRemovesGrain() {
         // Given
-        Game sell = new Game();
-        int oldStorage = sell.getStoredBushels();
-        int distributedStorage = sell.askHowMuchGrainToFeedPeople(oldStorage);
+        Game feed = new Game();
+        int oldStorage = feed.getStoredBushels();
+        int distributedStorage = feed.askHowMuchGrainToFeedPeople(oldStorage);
         // When
-        int actual = sell.getStoredBushels();
+        int actual = feed.getStoredBushels();
         int expected = oldStorage - distributedStorage;
         System.out.println("Old Bushel Reserve: " + oldStorage + "\nDistributed Bushels: " + distributedStorage + "\nNew Bushel Reserve " + actual);
         // Then
@@ -54,6 +54,17 @@ class GameTest {
 
     @Test
     void plagueDeaths() {
+        // Given
+        Game plague = new Game();
+        int prePlaguePopulation = plague.getPopulation();
+        int chancePlague = plague.plagueDeaths(prePlaguePopulation);
+        // When
+        int actual = prePlaguePopulation - plague.getPlagueDeaths();
+        int expected = prePlaguePopulation - chancePlague;
+        System.out.println("Pre-plague population: " + prePlaguePopulation + "\nDeceased citizens " + chancePlague + "\nNew population " + actual);
+        // Then
+        System.out.println(actual + " " + expected);
+        Assert.assertEquals(actual,expected);
     }
 
     @Test

@@ -13,15 +13,16 @@ public class Game {
     private int storedBushels = 2800;
     private int population = 100;
     private int prevPopulation = 95;
-    private int starvedPopulation, newImmigrants, totalImmigrants,impossibleAnswers = 0;
+    private int starvedPopulation, newImmigrants, totalImmigrants,impossibleAnswers, plagueDeaths = 0;
     private int ownedAcres = 1000;
     private int landPrice = 19;
     private int harvestedCrops = 3000;
     private int seedYield = 3;
     private int ravagedGrain = 200;
     private int reignDuration = 1;
-    boolean revolt = false;
-    boolean boughtLand = false;
+    boolean revolt, plague, boughtLand = false;
+
+
 
 
 
@@ -29,6 +30,7 @@ public class Game {
     private int bushelsFedToPeople = rand.nextInt((int)((20*population) *.55), 20*population);
     private int acresToBuy = rand.nextInt(0, storedBushels/landPrice + 500);
     private int acresToSell = rand.nextInt(0, ownedAcres + 120);
+    private boolean castPlague = rand.nextInt(100) < 15;
 
 
 //
@@ -82,9 +84,11 @@ public class Game {
     }
 
     public int plagueDeaths (int population){
-
-
-        return 0;
+        int prePlaguePopulation = population;
+        if(castPlague){
+            plagueDeaths = (int) (this.population * .5);
+        }
+        return plagueDeaths;
     }
     public int starvationDeaths ( int population, int bushelsFedToPeople){
         return 0;
@@ -243,6 +247,15 @@ public class Game {
     public void setAcresToSell(int acresToSell) {
         this.acresToSell = acresToSell;
     }
+
+    public int getPlagueDeaths() {
+        return plagueDeaths;
+    }
+
+    public void setPlagueDeaths(int plagueDeaths) {
+        this.plagueDeaths = plagueDeaths;
+    }
+
     public void tryCatchBody(){
         try {
             System.out.println(getPhrase.setPhrase());

@@ -7,8 +7,9 @@ public class GenerateReport extends Game  {
     String ravageReport = "Rats destroyed " + getRavagedGrain() + " bushels leaving 2800 bushels in storage.\n";
     String populationReport = "You now reign over " + getPopulation() + " citizens.\n";
     String landPriceReport = "Land is currently worth " +  getLandPrice() + " bushels/acre.\n";
+    String plagueReport = "";
     String report = salutationIntro + landReport + harvestReport +
-            ravageReport + populationReport + landPriceReport;
+            ravageReport + populationReport + landPriceReport + plagueReport;
 
     public String getReport(){
         if (getReignDuration() == 1){
@@ -31,6 +32,10 @@ public class GenerateReport extends Game  {
             }
             if (getLandPrice() > 20)
             landPriceReport = "Land is currently worth " + getLandPrice() + " bushels/acre.\n";
+            if(plague){
+                plagueReport = "A plague unlike any before or after has swept through your kingdom. \n " +
+                        "All around Sumer, weeping is heard.";
+            }
 
             return report;
         }
