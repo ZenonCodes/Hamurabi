@@ -15,7 +15,7 @@ public class PlayHammurabi {
         }
 
          void playGame() {
-             while (newGame.getReignDuration() <= 10) {
+             while (newGame.getReignDuration() <= 10 && !(newGame.isUprising())) {
                  System.out.printf(dailyReport.getReport(newGame));
                  System.out.println(newGame.getReignDuration());
                  newGame.askHowManyAcresToBuy();
@@ -29,6 +29,7 @@ public class PlayHammurabi {
                  newGame.harvest();
                  newGame.grainEatenByRats();
                  newGame.endDay();
+                 newGame.setReignDuration(newGame.getReignDuration()+ 1);
 
              }
              System.out.printf(dailyReport.getReport(newGame) + '\n' + "Thus, concludes your reign!");

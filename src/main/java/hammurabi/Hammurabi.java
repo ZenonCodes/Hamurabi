@@ -61,6 +61,7 @@ public class Hammurabi {
                 soldAcres = getNumber("Honorable Hammurabi, how many acres of land would you like to sell?\n");
             }
             acresSold = soldAcres;
+            storedBushels += acresSold * landPrice;
             ownedAcres -= soldAcres;
         }
     }
@@ -103,7 +104,7 @@ public class Hammurabi {
     }
 
     public void triggerUprising(){
-        if (starvedPopulation > .55 * prevPopulation) {
+        if (starvedPopulation > .45 * prevPopulation) {
             uprising = true;
         }
 
@@ -132,7 +133,7 @@ public class Hammurabi {
     }
     public void endDay(){
         castPlague = boughtLand = false;
-        ravagedGrain = newImmigrants = bushelsFedToPeople = 0;
+        acresSold = acresBought = ravagedGrain = newImmigrants = bushelsFedToPeople = 0;
     }
 
 

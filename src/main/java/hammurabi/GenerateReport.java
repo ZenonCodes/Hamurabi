@@ -10,7 +10,7 @@ public class GenerateReport {
     String populationReport = "You now reign over " + game.getPopulation() + " citizens.\n";
     String landPriceReport = "Land is currently worth " +  game.getLandPrice() + " bushels/acre.\n";
     String plagueReport = "";
-    String uprisingReport = "I report to you no longer! Guards, escort him to the lion's den!";
+    String uprisingReport = "I report to you no longer! Guards, escort him to the lion's den!\n *Yells of uprising echo off the kingdom walls* \n";
     String report = salutationIntro + landReport + harvestReport +
             ravageReport + populationReport + landPriceReport + plagueReport + "\n";
 
