@@ -20,7 +20,7 @@ public class Hammurabi {
     private int seedYield = 3;
     private int ravagedGrain = 200;
     private int reignDuration = 1;
-    boolean uprising, boughtLand = false;
+    boolean soldLand, uprising, boughtLand = false;
     private int acresSold, acresBought, bushelsFedToPeople,acresPlanted = 0;
 
     private boolean castPlague = false;
@@ -64,6 +64,7 @@ public class Hammurabi {
                 tryCatchBody();
                 soldAcres = getNumber("Honorable Hammurabi, how many acres of land would you like to sell?\n");
             }
+            soldLand = (soldAcres > 0);
             acresSold = soldAcres;
             storedBushels += acresSold * landPrice;
             ownedAcres -= soldAcres;
@@ -105,7 +106,6 @@ public class Hammurabi {
     public void starvationDeaths (){
         population = bushelsFedToPeople/20;
         starvedPopulation = -1 * (population - prevPopulation);
-        System.out.println(starvedPopulation);
     }
 
     public void triggerUprising(){
@@ -304,6 +304,13 @@ public class Hammurabi {
         this.deployRats = deployRats;
     }
 
+    public boolean isSoldLand() {
+        return soldLand;
+    }
+
+    public void setSoldLand(boolean soldLand) {
+        this.soldLand = soldLand;
+    }
 
     public void tryCatchBody(){
         try {
