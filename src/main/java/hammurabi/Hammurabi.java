@@ -136,6 +136,7 @@ public class Hammurabi {
         }
     }
     public void endDay(){
+        soldLand = false;
         setLandPrice();
         acresSold = acresBought = ravagedGrain = newImmigrants = bushelsFedToPeople = 0;
     }

@@ -28,7 +28,7 @@ public class GenerateReport {
         if (game.getOwnedAcres() > 1200){
             landReport = "Your kingdom stretches far and wide totaling " + game.getOwnedAcres() + " acres of land!\n";
         }
-        if (game.getHarvestedCrops() >= 1000 && game.getSeedYield() > 1) {
+        if (game.getHarvestedCrops() >= 1000 && game.getSeedYield() > 3) {
             harvestReport = "Our " + game.getHarvestedCrops() + " bushel harvest was bountiful at " + +
                     game.getSeedYield() + " bushels/acre.\n";
         }
@@ -41,8 +41,8 @@ public class GenerateReport {
             landPriceReport = "Land is currently worth a whopping " + game.getLandPrice() + " bushels/acre.\n";
         }
         if(game.isCastPlague()){
-            plagueReport = "A plague unlike any before or after has swept through your kingdom. \n " +
-                    "All around Sumer, weeping is heard.";
+            plagueReport = "A plague unlike any before or after has swept through your kingdom. \n" +
+                    "All around Sumer, weeping is heard.\n";
         }
 
         if(game.isUprising()){
@@ -50,7 +50,7 @@ public class GenerateReport {
         }
 
         String report = salutationIntro + landReport + harvestReport +
-                ravageReport + populationReport + landPriceReport + plagueReport + soldLandRev + "\n";
+                ravageReport + populationReport + soldLandRev + landPriceReport + plagueReport + "\n";
         return report;
     }
 
